@@ -23,7 +23,10 @@ namespace BookEntry_FluentAPI
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             //Implement code to make 'Book_id' required in entity 'Book' and table name as mentioned in description 
-
+            modelBuilder.Entity<Book>().ToTable("BookDetail");
+            modelBuilder.Entity<Book>().HasKey(e => e.BookId);
+            modelBuilder.Entity<Book>().Property(e => e.BookId).HasColumnName("Book_Id");
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

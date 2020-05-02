@@ -22,16 +22,16 @@ namespace BookEntry_FluentAPI
         public List<Book> GetBookByGenre(String Genre)   //DO NOT change the method Name and Signature
         {
             //Implement code to get the book entity from database based on Genre
+            List<Book> books = new List<Book>();
             LibraryContext library = new LibraryContext();
             foreach (var book in library.Books.ToList<Book>())
             {
-                if (book.BookGenre!=Genre)
+                if (book.BookGenre == Genre)
                 {
-                    library.Books.ToList<Book>().Remove(book);
-                    library.SaveChanges();
+                    books.Add(book);
                 }
             }
-            return library.Books.ToList<Book>();
+            return books;
         }
         public List<Book> GetBooksList() //DO NOT change the method Name and Signature
         {
