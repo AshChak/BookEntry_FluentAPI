@@ -64,7 +64,7 @@ namespace BookEntry_FluentAPI
             {
                 if (book.BookId == BookId)
                 {
-                    library.Books.ToList<Book>().Remove(book);
+                    library.Books.Remove(book);
                     library.SaveChanges();
                     return book;
                 }
