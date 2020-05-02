@@ -21,28 +21,27 @@ namespace BookEntry_FluentAPI
         public List<Book> GetBookByGenre(String Genre)   //DO NOT change the method Name and Signature
         {
             //Implement code to get the book entity from database based on Genre
-            List<Book> books = GetBooksList();
-            foreach (var book in books)
+            LibraryContext library = new LibraryContext();
+            foreach (var book in library.Books.ToList<Book>())
             {
                 if (book.BookGenre!=Genre)
                 {
-                    books.Remove(book);
+                    library.Books.ToList<Book>().Remove(book);
                 }
             }
-            return books;
+            return library.Books.ToList<Book>();
         }
         public List<Book> GetBooksList() //DO NOT change the method Name and Signature
         {
             //Implement code to get the book list from database
             LibraryContext library = new LibraryContext();
-            List<Book> books = library.Books.ToList<Book>();
-            return books;
+            return library.Books.ToList<Book>();
         }
         public Book UpdateBookPrice(int NewPrice, int Bookid)   //DO NOT change the method Name and Signature
         {
             //Implement code to update the book entity 
-            List<Book> books = GetBooksList();
-            foreach (var book in books)
+            LibraryContext library = new LibraryContext();
+            foreach (var book in library.Books.ToList<Book>())
             {
                 if (book.BookId == Bookid)
                 {
@@ -57,12 +56,12 @@ namespace BookEntry_FluentAPI
         public Book DeleteBook(int BookId)  //DO NOT change the method Name and Signature
         {
             //Implement code to delete the book entity by Id
-            List<Book> books = GetBooksList();
-            foreach (var book in books)
+            LibraryContext library = new LibraryContext();
+            foreach (var book in library.Books.ToList<Book>())
             {
                 if (book.BookId == BookId)
                 {
-                    books.Remove(book);
+                    library.Books.ToList<Book>().Remove(book);
                     return book;
                 }
             }
