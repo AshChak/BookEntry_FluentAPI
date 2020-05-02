@@ -13,6 +13,7 @@ namespace BookEntry_FluentAPI
             //Implement code to insert the book entity to database
             LibraryContext library = new LibraryContext();
             library.Books.Add(book);
+            library.SaveChanges();
             Console.WriteLine("Details Added Successfully");
             return book;
         }
@@ -27,6 +28,7 @@ namespace BookEntry_FluentAPI
                 if (book.BookGenre!=Genre)
                 {
                     library.Books.ToList<Book>().Remove(book);
+                    library.SaveChanges();
                 }
             }
             return library.Books.ToList<Book>();
@@ -46,6 +48,7 @@ namespace BookEntry_FluentAPI
                 if (book.BookId == Bookid)
                 {
                     book.BookPrice = NewPrice;
+                    library.SaveChanges();
                     return book;
                 }
             }
@@ -62,6 +65,7 @@ namespace BookEntry_FluentAPI
                 if (book.BookId == BookId)
                 {
                     library.Books.ToList<Book>().Remove(book);
+                    library.SaveChanges();
                     return book;
                 }
             }
